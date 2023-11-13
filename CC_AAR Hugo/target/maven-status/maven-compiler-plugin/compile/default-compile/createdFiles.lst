@@ -1,0 +1,4 @@
+imis\configuration\WebServletConfiguration.class
+imis\services\Facade.class
+imis\controllers\Controleur.class
+imis\configuration\ClientWebConfig.class

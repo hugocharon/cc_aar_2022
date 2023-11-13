@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+
+<form th:action="@{/createContact}" method="post">
+    <p>Nom : <input type="text" name="nom"/></p>
+    <p>Prenom : <input type="text" name="prenom"/></p>
+    <p>Email : <input type="text" name="email"/></p>
+    <p>tel : <input type="text" name="telephone"/></p>
+    <p>Entreprise : <select  name="entreprise">
+        <option th:each="entr : ${entreprises}" th:value="${entr.id}" th:text="${entr.nom}"/>
+    </select></p>
+    <p>Fonction : <select  name="fonction">
+        <option th:each="fonction : ${fonctions}" th:value="${fonction.idFunction}" th:text="${fonction.intituleFonction}"/>
+    </select></p>
+    <button type="submit">creer</button>
+
+    <div th:if="${#fields.hasErrors('global')}">
+        <p style="color: red;" th:each="err : ${#fields.errors('global')}" th:text="${err}" />
+    </div>
+</form>
+
+</body>
+</html>
