@@ -13,5 +13,3 @@ X
 (src/main/java/imis/entities/Contact.java,5\2\5237f3363ef0beaa82fa07b3b23b365522fb03c3
 X
 (src/main/java/imis/entities/Echange.java,5\8\583674fbeb7107d5ec4bc81ad193cbe3c13a15f5
-B
-src/main/readme.md,5\9\59703769960573acded9201d0f2d95975033312d

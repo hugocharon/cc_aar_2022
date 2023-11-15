@@ -5,6 +5,7 @@ import imis.entities.Contact;
 import imis.entities.Entreprise;
 import imis.entities.Fonction;
 import imis.exceptions.FonctionInexistante;
+import imis.exceptions.ParametreVideException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class Facade {
@@ -21,7 +23,10 @@ public class Facade {
     EntityManager em;
 
     @Transactional
-    public void createEntreprise(String siret, String nom, String adresse) {
+    public void createEntreprise(String siret, String nom, String adresse) throws ParametreVideException {
+        if(Objects.isNull(siret) || Objects.isNull(nom) || Objects.isNull(adresse) || siret.isEmpty() || nom.isEmpty() || adresse.isEmpty()) {
+            throw new ParametreVideException();
+        }
         Entreprise e = new Entreprise(nom, siret, adresse);
         em.persist(e);
     }

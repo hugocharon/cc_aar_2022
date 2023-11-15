@@ -18,5 +18,9 @@
 <form th:action="@{/}">
     <button type="submit">retour accueil</button>
 </form>
+
+<div th:if="${#fields.hasErrors('global')}">
+    <p style="color: red;" th:each="err : ${#fields.errors('global')}" th:text="${err}" />
+</div>
 </body>
 </html>

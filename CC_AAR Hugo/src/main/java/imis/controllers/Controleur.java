@@ -3,6 +3,7 @@ package imis.controllers;
 import imis.entities.Entreprise;
 import imis.entities.Fonction;
 import imis.exceptions.FonctionInexistante;
+import imis.exceptions.ParametreVideException;
 import imis.services.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,9 +36,14 @@ public class Controleur {
     }
 
     @PostMapping("createEntreprise")
-    public String createEntreprisePost(@RequestParam String siret, @RequestParam String nom, @RequestParam String adresse) {
-        facade.createEntreprise(siret,nom,adresse);
-        return "hello";
+    public String createEntreprisePost(@Valid @ModelAttribute Entreprise entreprise, BindingResult result, Model model) {
+        try {
+            facade.createEntreprise(entreprise.getSiret(), entreprise.getNom(), entreprise.getAdresse());
+            return "hello";
+        } catch (ParametreVideException e) {
+            result.addError(new ObjectError("entreprise", "Un des paramètres est vide !"));
+            return "createEntreprise";
+        }
     }
 
     @GetMapping("createFonction")
