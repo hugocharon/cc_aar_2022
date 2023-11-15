@@ -84,7 +84,7 @@ import java.util.Properties;
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(additionalProperties());
+        // em.setJpaProperties(additionalProperties());
 
         return em;
     }

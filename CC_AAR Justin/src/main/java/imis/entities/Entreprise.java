@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 public class Entreprise {
     @Id
-    @GeneratedValue
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    private Integer id;
     private String nom;
     private String siret;
     private String adresse;
@@ -55,11 +55,11 @@ public class Entreprise {
         this.ventes = ventes;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -100,7 +100,7 @@ public class Entreprise {
         dto.setAdresse(e.getAdresse());
         dto.setNom(e.getNom());
         dto.setSiret(e.getSiret());
-        dto.setId(e.getId());
+        dto.setId(e.getId().longValue());
         return dto;
     }
 }

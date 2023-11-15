@@ -33,7 +33,7 @@ public class Facade {
 
     @Transactional
     public void creerContact(CreerContactDTO creerContactDTO) throws EntrepriseNotFoundException, FonctionNotFoundException, CreerContactParamException {
-        if(creerContactDTO.getEntreprise() == null || creerContactDTO.getFonction() == null)
+        if(creerContactDTO.getEntreprise() == null || creerContactDTO.getFonction() == null || creerContactDTO.getNom().isEmpty())
             throw new CreerContactParamException();
 
         Entreprise e = em.find(Entreprise.class, creerContactDTO.getEntreprise());

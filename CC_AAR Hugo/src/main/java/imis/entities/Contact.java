@@ -10,7 +10,7 @@ import java.util.List;
 public class Contact extends Personne {
 
     private String numeroTelephone;
-    @ManyToMany
+    @ManyToMany(mappedBy = "contacts")
     private List<Echange> echanges;
     @ManyToOne
     private Entreprise entreprise;
