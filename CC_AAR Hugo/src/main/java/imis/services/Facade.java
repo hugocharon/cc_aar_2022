@@ -4,6 +4,7 @@ package imis.services;
 import imis.entities.Contact;
 import imis.entities.Entreprise;
 import imis.entities.Fonction;
+import imis.exceptions.FonctionInexistante;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -55,7 +56,7 @@ public class Facade {
             return null;
         }
     }
-
+    
     public List<Fonction> getAllFonction() {
         try {
             Query q = em.createQuery("SELECT f FROM Fonction f");
@@ -85,6 +86,19 @@ public class Facade {
             return q.getResultList();
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Transactional
+    public void deleteFonction(String fonction) throws FonctionInexistante {
+        try {
+            Query q = em.createQuery("SELECT f FROM Fonction f WHERE f.id = :fonction");
+            q.setParameter("fonction", Integer.parseInt(fonction));
+            Fonction f = (Fonction) q.getSingleResult();
+
+            em.remove(f);
+        } catch (Exception e) {
+            throw new FonctionInexistante();
         }
     }
 }

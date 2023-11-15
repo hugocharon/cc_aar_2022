@@ -2,6 +2,7 @@ package imis.controllers;
 
 import imis.entities.Entreprise;
 import imis.entities.Fonction;
+import imis.exceptions.FonctionInexistante;
 import imis.services.Facade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,25 @@ public class Controleur {
     public String createFonctionPost(@RequestParam String intitule){
         facade.createFonction(intitule);
         return "hello";
+    }
+
+    @GetMapping("getFonction")
+    public String getFonction(Model model){
+        List<Fonction> fonctions = facade.getAllFonction();
+        model.addAttribute("fonctions",fonctions);
+        return "getFonction";
+    }
+
+    @PostMapping("deleteFonction")
+    public String deleteFonction(@RequestParam String id, Model model){
+        try {
+            facade.deleteFonction(id);
+            model.addAttribute("deleteFonction", true);
+            return "hello";
+        } catch (FonctionInexistante e) {
+            model.addAttribute("deleteFonction", false);
+            return "hello";
+        }
     }
 
     @GetMapping("createContact")

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fonction</title>
+</head>
+<body>
+<form th:action="@{/deleteFonction}" method="post">
+  <p>Fonction :
+    <select  name="id">
+      <option th:each="fonction : ${fonctions}" th:value="${fonction.id}" th:text="${fonction.intituleFonction}"/>
+    </select>
+  </p>
+  <button type="submit">Supprimer</button>
+</form>
+
+<form th:action="@{/}">
+    <button type="submit">retour accueil</button>
+</form>
+</body>
+</html>

@@ -1,8 +1,0 @@
-
-p
-java:S1488H"ZImmediately return this expression instead of assigning it to the temporary variable "db".(‚Å≥›
-V	java:S1254"<This block of commented-out lines of code should be removed.(ê••Ω˛ˇˇˇˇ
-S
-java:S3878S"8Remove this array creation and simply pass the elements.(ƒâ‚“˚ˇˇˇˇ
-~
-java:S1128"cRemove this unused import 'org.springframework.web.servlet.config.annotation.ViewResolverRegistry'.(íÓà˛ˇˇˇˇ

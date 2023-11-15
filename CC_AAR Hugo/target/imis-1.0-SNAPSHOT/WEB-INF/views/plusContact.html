@@ -9,7 +9,7 @@
 
 Entreprise avec le plus de contacts :
 <div th:unless="${error}">
-    <span th:if="${e}" th:text="${e.nom}">Nom de l'entreprise indisponible !</span>
+    <span th:if="${e}" th:text="${e.nom}"></span>
 </div>
 <div th:if="${error}">
     <p style="color: red;" th:text="${error}"></p>
