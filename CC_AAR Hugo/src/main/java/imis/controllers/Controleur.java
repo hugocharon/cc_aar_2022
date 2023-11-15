@@ -57,6 +57,25 @@ public class Controleur {
         return "getFonction";
     }
 
+    @GetMapping("updateFonction")
+    public String updateFonction(Model model) {
+        List<Fonction> fonctions = facade.getAllFonction();
+        model.addAttribute("fonctions",fonctions);
+        return "updateFonction";
+    }
+
+    @PostMapping("updateFonction")
+    public String updateFonction(@RequestParam String id, @RequestParam String intitule, Model model){
+        try {
+            model.addAttribute("updateFonction", true);
+            facade.updateFonction(id, intitule);
+            return "hello";
+        } catch (FonctionInexistante e) {
+            model.addAttribute("updateFonction", false);
+            return "hello";
+        }
+    }
+
     @PostMapping("deleteFonction")
     public String deleteFonction(@RequestParam String id, Model model){
         try {

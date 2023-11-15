@@ -56,7 +56,7 @@ public class Facade {
             return null;
         }
     }
-    
+
     public List<Fonction> getAllFonction() {
         try {
             Query q = em.createQuery("SELECT f FROM Fonction f");
@@ -97,6 +97,21 @@ public class Facade {
             Fonction f = (Fonction) q.getSingleResult();
 
             em.remove(f);
+        } catch (Exception e) {
+            throw new FonctionInexistante();
+        }
+    }
+
+    @Transactional
+    public void updateFonction(String id, String intitule) throws FonctionInexistante {
+        try {
+            Query q = em.createQuery("SELECT f FROM Fonction f WHERE f.id = :id");
+            q.setParameter("id", Integer.parseInt(id));
+            Fonction f = (Fonction) q.getSingleResult();
+
+            f.setIntituleFonction(intitule);
+            em.persist(f);
+
         } catch (Exception e) {
             throw new FonctionInexistante();
         }

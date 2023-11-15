@@ -8,19 +8,27 @@
 <body>
 
 <span style="color: green;" th:if="${deleteFonction} == true">La suppresion de la fonction a été réalisé avec succès !</span>
+<span style="color: green;" th:if="${updateFonction} == true">La mise à jour de la fonction a été réalisé avec succès !</span>
 <span style="color: red;" th:if="${deleteFonction} == false">La suppresion de la fonction n'a pas marché !</span>
+<span style="color: red;" th:if="${updateFonction} == false">La mise à jour de la fonction n'a pas marché !</span>
 
 <form th:action="@{/createEntreprise}" method="get">
     <button type="submit">créer entreprise</button>
 </form>
 
-<form th:action="@{/createFonction}" method="get">
-    <button type="submit">créer fonction</button>
-</form>
+<div style="display: inline-block">
+    <form th:action="@{/createFonction}" method="get">
+        <button type="submit">créer fonction</button>
+    </form>
 
-<form th:action="@{/getFonction}" method="get">
-    <button type="submit">supprimer une fonction</button>
-</form>
+    <form th:action="@{/updateFonction}" method="get">
+        <button type="submit">update une fonction</button>
+    </form>
+
+    <form th:action="@{/getFonction}" method="get">
+        <button type="submit">supprimer une fonction</button>
+    </form>
+</div>
 
 <form th:action="@{/createContact}" method="get">
     <button type="submit">créer contact</button>
